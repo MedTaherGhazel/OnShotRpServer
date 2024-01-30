@@ -1,0 +1,33 @@
+<div>
+    <div class="container mt-5">
+       <div class="card">
+        <div class="card-header">
+            <h4>Create User
+
+          <a routerLink="/users-list" class="btn btn-primary float-end">Back</a>
+        </h4>
+        </div>
+<div class="card-body">
+    <form (ngSubmit)="saveuser()">
+        <div class="mb-3">
+            <label>Full Name</label>
+            <input type="text" [(ngModel)]="Fullname" name="Fullname" class="form-control">
+
+        </div>
+        <div class="mb-3">
+            <label>Role</label>
+            <input type="text" [(ngModel)]="role" name="role" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="text" [(ngModel)]="email" name="email" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <button  type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+</div>
+       </div>
+    </div>
+</div>

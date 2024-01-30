@@ -1,0 +1,31 @@
+<div>
+  <div class="container mt-5">
+     <div class="card">
+      <div class="card-header">
+          <h4>Update Product
+
+        <a routerLink="/products" class="btn btn-primary float-end">Back</a>
+      </h4>
+      </div>
+<div class="card-body">
+  <form (ngSubmit)="updateProduct(product?._id)">
+      <div class="mb-3">
+          <label>Product Name</label>
+          <input type="text" [(ngModel)]="product.name" name="name" class="form-control" placeholder="{{product?.name}}">
+      </div>
+      <div class="mb-3">
+          <label>Description</label>
+          <input  type="text" [(ngModel)]="product.description" name="description" class="form-control" placeholder="{{product?.description}}">
+      </div>
+      <div class="mb-3">
+          <label>Qte</label>
+          <input type="number" [(ngModel)]="product.qte" name="qte" class="form-control" placeholder="{{product?.qte}}">
+      </div>
+      <div class="mb-3">
+          <button  type="submit" class="btn btn-primary">Update</button>
+      </div>
+  </form>
+</div>
+     </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="text-center">
+            <h1>Register</h1>
+          </div>
+          <form [formGroup]="signupForm">
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Full name</label>
+              <input formControlName="fullname" type="text" class="form-control" id="exampleInputPassword1" placeholder="Full Name">
+            </div>
+            <small *ngIf="signupForm.controls['fullname'].dirty && signupForm.hasError('required', 'fullname')" class="text-danger"> Name is required</small>
+  
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+            </div>
+            <small *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required', 'email')" class="text-danger">Email is required</small>
+  
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <small *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required', 'password')" class="text-danger">Password is required</small>
+  
+            <button type="submit" class="btn btn-primary" (click)="Onsignup()">Register</button>
+          </form>
+          <a style="color: #fff; margin-top: 10px;" routerLink="/login">Already Registered? Click to Login!</a>
+        </div>
+      </div>
+    </div>
+  </div>
