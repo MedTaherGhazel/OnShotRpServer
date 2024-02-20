@@ -29,8 +29,7 @@ export class ProductService {
   }
 
   deleteProduct(productId: number): Observable<any> {
-    const url = `http://localhost:8088/products/${productId}`;
-
+    const url = `${this.apiUrl}/${productId}`;
     return this.http.delete(url);
   }
 

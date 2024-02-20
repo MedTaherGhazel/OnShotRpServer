@@ -27,7 +27,22 @@
         <a href="#">Home</a>
         <a routerLink="/products">Products</a>
         <a routerLink="/users-list">Users</a>
-        <a href="#">Logout</a>
+        <span *ngIf="!authService.isAuthenticated()">
+          <button routerLink="/login" class="button">
+            <span class="button_lg">
+              <span class="button_sl"></span>
+              <span class="button_text">Login</span>
+            </span>
+          </button>
+        </span>
+        <span *ngIf="authService.isAuthenticated()">
+          <button (click)="logout()" class="button">
+            <span class="button_lg">
+              <span class="button_sl"></span>
+              <span class="button_text">Logout</span>
+            </span>
+          </button>
+        </span>
       </div>
     </div>
 

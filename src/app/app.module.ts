@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/signup/signup.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,13 +16,14 @@ import { ProductListComponent } from './components/products/product-list/product
 import { HttpClientModule } from '@angular/common/http';
 import { ProductCreateComponent } from './components/products/product-create/product-create.component';
 import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
+import { AuthGuard } from './services/auth.guard';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent,
     UsersCreateComponent,
     EdituserComponent,
     NavsidebarComponent,
@@ -32,6 +32,7 @@ import { ProductEditComponent } from './components/products/product-edit/product
     ProductListComponent,
     ProductCreateComponent,
     ProductEditComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +42,7 @@ import { ProductEditComponent } from './components/products/product-edit/product
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

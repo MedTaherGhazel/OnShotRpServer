@@ -5,23 +5,23 @@
                 <div class="text-center">
                     <h1>Login</h1>
                 </div>
-                <form [formGroup]="loginForm">
+                <form >
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input formControlName="Email"  type="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  placeholder="Email">
-                       
+                        <input [(ngModel)]="email" [ngModelOptions]="{standalone:true}"  type="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  placeholder="Email">
+
                     </div>
-                    <small *ngIf="loginForm.controls['Email'].dirty&&loginForm.hasError('required','Email')" class="text-danger">Email is required</small>
-                    
-                  
+                    <!-- <small *ngIf="loginForm.controls['Email'].dirty&&loginForm.hasError('required','Email')" class="text-danger">Email is required</small> -->
+
+
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input   formControlName="Password"  type="Password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <input [(ngModel)]="password" [ngModelOptions]="{standalone:true}" type="Password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
-                   <small  *ngIf="loginForm.controls['Password'].dirty&&loginForm.hasError('required','Password')" class="text-danger">password is required</small>
-                    <button   (click)="onSubmit()"  type="submit" class="btn btn-primary">Login</button>
+                   <!-- <small  *ngIf="loginForm.controls['Password'].dirty&&loginForm.hasError('required','Password')" class="text-danger">password is required</small> -->
+                    <button   (click)="login()"  type="submit" class="btn btn-primary">Login</button>
                 </form>
-                <a style="color: #fff; margin-top: 10px;" routerLink="/signup">Don't have an account? <br>  signup!</a>
+                <a style="color: #fff; margin-top: 10px;" routerLink="/register">Don't have an account? <br>  signup!</a>
             </div>
         </div>
     </div>

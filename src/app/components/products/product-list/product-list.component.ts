@@ -43,5 +43,5 @@ export class ProductListComponent {
 
   gotToEdit(id: any) {
     this.router.navigate(['/editproduct', id]);
-}
+  }
 }

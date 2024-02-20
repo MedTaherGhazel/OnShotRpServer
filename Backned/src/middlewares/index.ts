@@ -6,7 +6,7 @@ import { getUserBySessionToken } from "../db/users";
 export const isOwner =async (req:express.Request, res: express.Response, next:express.NextFunction) => {
     try{
         const { id } = req.params
-        const currentUserId = get (req, 'identity._id') as string 
+        const currentUserId = get (req, 'identity._id') as string
 
         if(!currentUserId){
             console.log('makch authenticated')
@@ -46,7 +46,7 @@ export const isAuthenticated =async (req:express.Request, res:express.Response, 
         console.log(error)
         return res.sendStatus(400);
     }
-} 
+}
 
 export const isAdmin = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
