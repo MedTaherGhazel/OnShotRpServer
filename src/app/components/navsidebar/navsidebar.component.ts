@@ -11,7 +11,8 @@ export class NavsidebarComponent {
   constructor(public authService:AuthService){}
 
 logout() {
-  this.authService.logout();
+
 }
+
   sidebarActive=false;
 }

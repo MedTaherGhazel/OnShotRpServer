@@ -16,7 +16,6 @@ import { ProductListComponent } from './components/products/product-list/product
 import { HttpClientModule } from '@angular/common/http';
 import { ProductCreateComponent } from './components/products/product-create/product-create.component';
 import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
-import { AuthGuard } from './services/auth.guard';
 import { RegisterComponent } from './components/register/register.component';
 
 
@@ -42,7 +41,7 @@ import { RegisterComponent } from './components/register/register.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthGuard],
+  // providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

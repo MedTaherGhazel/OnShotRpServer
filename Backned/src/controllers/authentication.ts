@@ -27,8 +27,10 @@ export const login = async(req: express.Request,res:express.Response)=>{
      await user.save();
 
      res.cookie('med', user.authentication.sessionToken, {domain : 'localhost', path: '/'});
-
-     return res.status(200).json(user).end();
+     const transformedResponse = {
+      user: user
+    };
+     return res.status(200).json(transformedResponse).end();
 
   }catch(error){
     console.log(error);
@@ -47,7 +49,7 @@ export const register = async (req: express.Request, res: express.Response) => {
     const existingUser = await getUserByEmail(email);
 
     if (existingUser) {
-      return res.sendStatus(400);
+      return res.sendStatus(409);
     }
 
     const salt = random();
@@ -60,8 +62,10 @@ export const register = async (req: express.Request, res: express.Response) => {
         password: authentication(salt, password),
       },
     });
-
-    return res.status(200).json(user).end();
+    const transformedResponse = {
+      user: user
+    };
+    return res.status(200).json(transformedResponse).end();
   } catch (error) {
     console.log("ahah",error);
     return res.sendStatus(400);

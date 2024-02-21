@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/user';
 
 @Component({
   selector: 'app-register',
@@ -9,46 +11,36 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  fb = inject(FormBuilder)
+  http = inject(HttpClient)
+  authService = inject(AuthService)
+  router = inject(Router)
+  form = this.fb.nonNullable.group({
+    email: ['', Validators.required],
+    password: ['', Validators.required],
+    username: ['', Validators.required],
+  })
 
-  signupForm!: FormGroup;
-  username: string = "";
-  email: string = "";
-  password: string = "";
+  onSubmit(): void {
+    this.http.post<{user: User
+    }>('http://localhost:8088/auth/register',
+      this.form.getRawValue()
+    )
+      .subscribe(response => {
+        console.log('response', response)
+        console.log('response', response.user)
+        
+        localStorage.setItem('isAdmin', response.user.isAdmin);
 
-
-  constructor(private fb: FormBuilder, private http: HttpClient, private authService :AuthService) { }
-
-  ngOnInit(): void {
-    this.signupForm = this.fb.group({
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-    });
-  }
-  register() {
-    let bodyData={
-      "username":this.username ,
-      "email":this.email,
-      "password":this.password
-    }
-    this.http.post("http://localhost:8088/auth/register",bodyData).subscribe((resultData:any)=>{
-      console.log(resultData);
-      alert('User Registred Successfully')
-    })
-  }
-
-  save() {
-    this.register()
-  }
-
-  private validateAllFormFileds(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsDirty({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFileds(control)
-      }
-    })
+        alert("Registered Successfully")
+        this.authService.currentUserSig.set(response.user)
+        this.router.navigateByUrl('/')
+      }, error => {
+        if (error.status == 409) {
+          alert(`Email ${this.form.value.email} is already in use`)
+        } else {
+          alert("Something went wrong")
+        }
+      });
   }
 }

@@ -11,8 +11,6 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent {
-
-
   product: Product[] = [];
   pSubscription: Subscription | undefined;
 

@@ -1,4 +1,4 @@
-<div id="container" [ngClass]="{sidebarActive:sidebarActive}">
+<div id="container">
   <div id="sidebar">
     <div class="menu2">
       <a class="m" href="#">Login</a>
@@ -27,15 +27,23 @@
         <a href="#">Home</a>
         <a routerLink="/products">Products</a>
         <a routerLink="/users-list">Users</a>
-        <span *ngIf="!authService.isAuthenticated()">
+        <span *ngIf="!authService.currentUserSig()">
           <button routerLink="/login" class="button">
             <span class="button_lg">
               <span class="button_sl"></span>
               <span class="button_text">Login</span>
             </span>
           </button>
+          <button routerLink="/register" class="button">
+            <span class="button_lg">
+              <span class="button_sl"></span>
+              <span class="button_text">Register</span>
+            </span>
+          </button>
         </span>
-        <span *ngIf="authService.isAuthenticated()">
+
+        <span *ngIf="authService.currentUserSig()">
+          <h1>{{authService.currentUserSig()?.username}}</h1>
           <button (click)="logout()" class="button">
             <span class="button_lg">
               <span class="button_sl"></span>

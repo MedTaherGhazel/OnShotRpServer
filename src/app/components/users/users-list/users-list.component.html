@@ -1,12 +1,6 @@
 <div>
   <div class="container mt-5">
      <div class="card">
-      <div class="card-header">
-          <h4>List user
-        <a routerLink="/users-create" class="btn btn-primary float-end">Add User</a>
-
-      </h4>
-      </div>
 
 <div class="card-body">
   <table class="table tabl-striped table-bordered">
@@ -20,11 +14,11 @@
           </tr>
       </thead>
       <tbody>
-         <tr>
-          <td>id</td>
-          <td>username</td>
-          <td>email</td>
-          <td>role</td>
+         <tr *ngFor="let u of user; let i = index">
+          <td>{{u._id}}</td>
+          <td>{{u.username }}</td>
+          <td>{{u.email}}</td>
+          <td>{{u.isAdmin}}</td>
               <td>
               <a routerLink="/edituser" class="btn btn-success">Edit</a>
               <button type="button" class="btn btn-danger">Delete</button>
