@@ -8,6 +8,4 @@ import { User } from '../user';
 })
 export class AuthService {
   currentUserSig =signal<User | undefined | null>(undefined);
-  
-
 }

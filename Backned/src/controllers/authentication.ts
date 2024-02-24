@@ -10,7 +10,7 @@ export const login = async(req: express.Request,res:express.Response)=>{
       return res.sendStatus(400);
     }
 
-    const user =await getUserByEmail(email).select('authentication.salt +authentication.password');
+    const user = await getUserByEmail(email).select('email username isAdmin authentication.salt authentication.password');
     if(!user){
       return res.sendStatus(400);
     }

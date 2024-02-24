@@ -4,7 +4,7 @@ import { isAdmin, isAuthenticated, isOwner } from '../middlewares'
 
 
 export default (router: express.Router)=>{
-    router.get('/users', getAllUsers)
+    router.get('/users',isAdmin, getAllUsers)
     router.delete('/user/:id',isAuthenticated, deleteUser)
     router.patch('/user/:id', isAuthenticated, updateUser)
 }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -11,7 +11,8 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.get<any[]>(this.apiUrl,{ withCredentials:true});
   }
 
   deleteUser(userId: number): Observable<any> {

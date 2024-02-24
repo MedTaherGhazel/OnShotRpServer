@@ -5,6 +5,7 @@ export interface User {
   authentication:{
     password:string
     sault:string
+    sessionToken:string
   }
   _id:string
 }

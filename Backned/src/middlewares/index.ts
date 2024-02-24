@@ -54,6 +54,7 @@ export const isAdmin = async (req: express.Request, res: express.Response, next:
 
         if (!currentUser || !currentUser.isAdmin) {
             console.log('User is not an admin');
+            console.log(res);
             return res.sendStatus(403);
         }
 

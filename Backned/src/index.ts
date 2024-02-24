@@ -11,6 +11,7 @@ import  router  from './router';
 const app= express();
 
 app.use(cors ({
+  // origin: 'http://localhost:4200',
     credentials:true,
 }));
 

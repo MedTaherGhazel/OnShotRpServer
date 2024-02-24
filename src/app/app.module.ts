@@ -17,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductCreateComponent } from './components/products/product-create/product-create.component';
 import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
 import { RegisterComponent } from './components/register/register.component';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import { RegisterComponent } from './components/register/register.component';
     NgbModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   // providers: [AuthGuard],
   bootstrap: [AppComponent]
