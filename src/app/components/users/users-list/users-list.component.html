@@ -20,7 +20,7 @@
           <td>{{u.email}}</td>
           <td>{{u.isAdmin}}</td>
               <td>
-              <a routerLink="/edituser" class="btn btn-success">Edit</a>
+              <a (click)="gotToEdit(u._id)" class="btn btn-success">Edit</a>
               <button type="button" class="btn btn-danger">Delete</button>
               </td>
           <tr>

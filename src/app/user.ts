@@ -4,7 +4,7 @@ export interface User {
   isAdmin:string
   authentication:{
     password:string
-    sault:string
+    sault:string,
     sessionToken:string
   }
   _id:string

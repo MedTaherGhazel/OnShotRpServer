@@ -38,7 +38,7 @@ export const getProductBId = async (req: express.Request, res: express.Response)
 export const addProduct = async (req: express.Request, res: express.Response) => {
     try {
         const { name, description, qte } = req.body ;
-
+        console.log(req.body)
         if (!name || !qte) {
             console.log('Required fields missing');
             return res.sendStatus(400);

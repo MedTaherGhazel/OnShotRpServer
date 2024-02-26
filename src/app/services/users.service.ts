@@ -11,7 +11,7 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<any[]> {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const headers = new HttpHeaders().set('Content-Type','Cookie');
     return this.http.get<any[]>(this.apiUrl,{ withCredentials:true});
   }
 

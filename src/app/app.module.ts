@@ -19,6 +19,7 @@ import { ProductEditComponent } from './components/products/product-edit/product
 import { RegisterComponent } from './components/register/register.component';
 import { CookieService } from 'ngx-cookie-service';
 
+
 @NgModule({
   declarations: [
     AppComponent,

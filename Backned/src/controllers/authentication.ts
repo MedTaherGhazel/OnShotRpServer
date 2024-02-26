@@ -1,38 +1,38 @@
 import express from 'express';
-import { getUserByEmail,createUser } from '../db/users';
+import { getUserByEmail, createUser } from '../db/users';
 import { authentication, random } from '../helpers/index';
 
-export const login = async(req: express.Request,res:express.Response)=>{
-  try{
-    const{email,password} =req.body;
+export const login = async (req: express.Request, res: express.Response) => {
+  try {
+    const { email, password } = req.body;
 
-    if(!email || !password){
+    if (!email || !password) {
       return res.sendStatus(400);
     }
 
-    const user = await getUserByEmail(email).select('email username isAdmin authentication.salt authentication.password');
-    if(!user){
+    const user = await getUserByEmail(email).select('isAdmin username email authentication.salt +authentication.password');
+    if (!user) {
       return res.sendStatus(400);
     }
 
     const expectedHash = authentication(user.authentication.salt, password).toString();
 
-    if (user.authentication.password !== expectedHash){
+    if (user.authentication.password !== expectedHash) {
       return res.sendStatus(403);
     }
 
-    const salt =random();
+    const salt = random();
     user.authentication.sessionToken = authentication(salt, user._id.toString()).toString('hex');
 
-     await user.save();
+    await user.save();
 
-     res.cookie('med', user.authentication.sessionToken, {domain : 'localhost', path: '/'});
-     const transformedResponse = {
+    res.cookie('med', user.authentication.sessionToken, { domain: 'localhost', path: '/' });
+    const transformedResponse = {
       user: user
     };
-     return res.status(200).json(transformedResponse).end();
+    return res.status(200).json(transformedResponse).end();
 
-  }catch(error){
+  } catch (error) {
     console.log(error);
     return res.sendStatus(400);
   }
@@ -49,7 +49,7 @@ export const register = async (req: express.Request, res: express.Response) => {
     const existingUser = await getUserByEmail(email);
 
     if (existingUser) {
-      return res.sendStatus(409);
+      return res.sendStatus(400);
     }
 
     const salt = random();
@@ -62,12 +62,10 @@ export const register = async (req: express.Request, res: express.Response) => {
         password: authentication(salt, password),
       },
     });
-    const transformedResponse = {
-      user: user
-    };
-    return res.status(200).json(transformedResponse).end();
+
+    return res.status(200).json(user).end();
   } catch (error) {
-    console.log("ahah",error);
+    console.log("ahah", error);
     return res.sendStatus(400);
   }
 }

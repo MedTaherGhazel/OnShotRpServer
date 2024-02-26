@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -15,9 +15,11 @@ export class ProductService {
     console.log(data)
     this.http.post('http://localhost:8088/products', data).subscribe({
       next: (response) => {
+        console.log(data)
         console.log('Upload successful:', response);
       },
       error: (error) => {
+        console.log(data)
         console.error('Upload failed:', error);
       },
       complete: () => {
@@ -25,6 +27,8 @@ export class ProductService {
     });  }
 
   getProducts(): Observable<any[]> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    // return this.http.get<any[]>(this.apiUrl,{ withCredentials:true});
     return this.http.get<any[]>(this.apiUrl);
   }
 

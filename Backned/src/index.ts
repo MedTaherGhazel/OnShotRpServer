@@ -8,10 +8,11 @@ import mongoose, { connection } from 'mongoose';
 import  router  from './router';
 // import mongoosePaginate from 'mongoose-paginate';
 
+
 const app= express();
 
 app.use(cors ({
-  // origin: 'http://localhost:4200',
+  origin: 'http://localhost:4200',
     credentials:true,
 }));
 

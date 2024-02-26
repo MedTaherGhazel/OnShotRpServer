@@ -2,29 +2,36 @@
   <div class="container mt-5">
      <div class="card">
       <div class="card-header">
-          <h4>Create User
-
-        <a routerLink="/users-list" class="btn btn-primary float-end">Back</a>
+          <h4>Edit User
+          <a routerLink="/users-list" class="btn btn-primary float-end">Back</a>
       </h4>
       </div>
 <div class="card-body">
-  <form (ngSubmit)="saveuser()">
+  <form (ngSubmit)="updateUser(userId)">
       <div class="mb-3">
-          <label>Full Name</label>
-          <input type="text"  name="Fullname" class="form-control">
-
+          <label>Username</label>
+          <input type="text" [(ngModel)]="user.username" name="username" class="form-control" placeholder="{{user.username}}">
       </div>
       <div class="mb-3">
-          <label>Role</label>
-          <input type="text" [(ngModel)]="role" name="role" class="form-control">
+        <label>Email</label>
+        <input type="text" [(ngModel)]="user.email" name="email" class="form-control" placeholder="{{user.email}}">
+      </div>
+      <div class="mb-3" *ngIf="user.isAdmin == 'true'">
+        <label for="">Role</label>
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="user.isAdmin" name="isAdmin">
+          <option [value]="true" [selected]="user.isAdmin === 'true'">Admin</option>
+          <option [value]="false" [selected]="user.isAdmin !== 'true'">User</option>
+        </select>
+      </div>
+      <div class="mb-3" *ngIf="user.isAdmin !== 'true'">
+        <label for="">Role</label>
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="user.isAdmin" name="isAdmin">
+          <option [value]="false" [selected]="user.isAdmin !== 'true'">User</option>
+          <option [value]="true" [selected]="user.isAdmin === 'true'">Admin</option>
+        </select>
       </div>
       <div class="mb-3">
-          <label>Email</label>
-          <input type="text" [(ngModel)]="email" name="email" class="form-control">
-      </div>
-
-      <div class="mb-3">
-          <button  type="submit" class="btn btn-primary">Save</button>
+          <button type="submit" class="btn btn-primary">Save</button>
       </div>
   </form>
 </div>
